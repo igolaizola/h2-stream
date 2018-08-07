@@ -75,7 +75,6 @@ func (c *Client) Run() error {
 			}
 			k := strings.Trim(kv[0], " ")
 			v := strings.Trim(kv[1], " ")
-			fmt.Println(k, " ", v)
 			req.Header.Add(k, v)
 		}
 	}
