@@ -21,6 +21,7 @@ type Config struct {
 	Method   string
 	Insecure bool
 	Headers  []string
+	Data     string
 }
 
 // Client is a http2 client
@@ -65,8 +66,16 @@ func New(cfg Config) (*Client, error) {
 
 // Run launches a client
 func (c *Client) Run() error {
+	// Set body reader
+	var body io.Reader
+	if c.Data != "" {
+		body = io.MultiReader(strings.NewReader(c.Data), os.Stdin)
+	} else {
+		body = os.Stdin
+	}
+
 	// Establish http connection
-	req, err := http.NewRequest(c.Method, c.Addr, os.Stdin)
+	req, err := http.NewRequest(c.Method, c.Addr, body)
 	if c.Headers != nil {
 		for _, h := range c.Headers {
 			kv := strings.Split(h, ":")

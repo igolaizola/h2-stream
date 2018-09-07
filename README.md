@@ -18,7 +18,7 @@ go run cmd/h2-stream/main.go serve --addr=localhost:8080 --tls=false
 
 launch client:
 ```
-go run cmd/h2-stream/main.go cli --addr=http://localhost:8080 --method=POST
+go run cmd/h2-stream/main.go cli --addr=http://localhost:8080 --method=POST --data="BODY DATA"
 ```
 
 ### with TLS
@@ -29,5 +29,5 @@ go run cmd/h2-stream/main.go serve --addr=localhost:8080 --tls=true --cert=certs
 
 launch client:
 ```
-go run cmd/h2-stream/main.go cli --addr=https://localhost:8080 --method=POST --insecure
+go run cmd/h2-stream/main.go cli --addr=https://localhost:8080 --method=POST --data="BODY DATA" --insecure
 ```
