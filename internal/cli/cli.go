@@ -58,6 +58,7 @@ func newClientCommand() *cobra.Command {
 	cmd.Flags().StringVar(&cfg.Addr, "addr", "https://localhost:8080", "http server address")
 	cmd.Flags().StringVar(&cfg.Method, "method", "POST", "http method (GET, POST, PUT, DELETE...)")
 	cmd.Flags().BoolVar(&cfg.Insecure, "insecure", false, "skip tls validation")
+	cmd.Flags().StringVar(&cfg.Data, "data", "", "initial body data to be sent")
 	cmd.Flags().StringArrayVar(&cfg.Headers, "header", nil, "custom headers, ex.: \"Content-Type: application/json\"")
 	return cmd
 }
