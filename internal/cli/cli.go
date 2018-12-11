@@ -60,5 +60,6 @@ func newClientCommand() *cobra.Command {
 	cmd.Flags().BoolVar(&cfg.Insecure, "insecure", false, "skip tls validation")
 	cmd.Flags().StringVar(&cfg.Data, "data", "", "initial body data to be sent")
 	cmd.Flags().StringArrayVar(&cfg.Headers, "header", nil, "custom headers, ex.: \"Content-Type: application/json\"")
+	cmd.Flags().BoolVar(&cfg.Hex, "hex", false, "use hexadecimal input/output for data")
 	return cmd
 }
