@@ -2,6 +2,7 @@ package client
 
 import (
 	"crypto/tls"
+	"encoding/hex"
 	"errors"
 	"fmt"
 	"io"
@@ -22,6 +23,7 @@ type Config struct {
 	Insecure bool
 	Headers  []string
 	Data     string
+	Hex      bool
 }
 
 // Client is a http2 client
@@ -74,6 +76,10 @@ func (c *Client) Run() error {
 		body = os.Stdin
 	}
 
+	if c.Hex {
+		body = hex.NewDecoder(body)
+	}
+
 	// Establish http connection
 	req, err := http.NewRequest(c.Method, c.Addr, body)
 	if c.Headers != nil {
@@ -101,6 +107,12 @@ func (c *Client) Run() error {
 	}()
 
 	log.Println(fmt.Sprintf("Connected to %s", c.Addr))
-	io.Copy(os.Stdout, resp.Body)
+
+	out := io.Writer(os.Stdout)
+	if c.Hex {
+		out = hex.NewEncoder(out)
+	}
+
+	io.Copy(out, resp.Body)
 	return nil
 }
