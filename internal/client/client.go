@@ -1,6 +1,7 @@
 package client
 
 import (
+	"bufio"
 	"crypto/tls"
 	"encoding/hex"
 	"errors"
@@ -69,16 +70,13 @@ func New(cfg Config) (*Client, error) {
 // Run launches a client
 func (c *Client) Run() error {
 	// Set body reader
-	var body io.Reader
-	if c.Data != "" {
-		body = io.MultiReader(strings.NewReader(c.Data), os.Stdin)
-	} else {
-		body = os.Stdin
-	}
-
+	stdin := io.Reader(os.Stdin)
+	data := io.Reader(strings.NewReader(c.Data))
 	if c.Hex {
-		body = hex.NewDecoder(body)
+		stdin = hex.NewDecoder(&lineReader{bufio.NewReader(os.Stdin)})
+		data = hex.NewDecoder(strings.NewReader(c.Data))
 	}
+	body := io.MultiReader(data, stdin)
 
 	// Establish http connection
 	req, err := http.NewRequest(c.Method, c.Addr, body)
@@ -115,4 +113,17 @@ func (c *Client) Run() error {
 
 	io.Copy(out, resp.Body)
 	return nil
+}
+
+type lineReader struct {
+	*bufio.Reader
+}
+
+func (l *lineReader) Read(p []byte) (int, error) {
+	ln, _, err := l.ReadLine()
+	if err != nil {
+		return 0, nil
+	}
+	copy(p, ln)
+	return len(ln), nil
 }
