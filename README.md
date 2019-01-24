@@ -1,4 +1,4 @@
-
+[![GitHub release](https://img.shields.io/github/release/igarciaolaizola/h2-stream.svg)](https://github.com/igarciaolaizola/h2-stream/releases)
 [![Build Status](https://travis-ci.com/igarciaolaizola/h2-stream.svg?branch=master)](https://travis-ci.com/igarciaolaizola/h2-stream)
 [![Go Report Card](https://goreportcard.com/badge/igarciaolaizola/h2-stream)](http://goreportcard.com/report/igarciaolaizola/h2-stream)
 [![license](https://img.shields.io/github/license/igarciaolaizola/h2-stream.svg)](https://github.com/igarciaolaizola/h2-stream/blob/master/LICENSE.md)

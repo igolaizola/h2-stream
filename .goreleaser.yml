@@ -1,0 +1,21 @@
+# Build customization
+builds:
+  - main: ./cmd/h2-stream/main.go
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - windows
+      - darwin
+      - linux
+    goarch:
+      - 386
+      - amd64
+      - arm64
+# Archive customization
+archive:
+  replacements:
+      darwin: macos
+  format: tar.gz
+  format_overrides:
+    - goos: windows
+      format: zip
