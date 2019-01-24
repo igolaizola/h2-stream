@@ -1,1 +1,14 @@
+sudo: required
 language: go
+go_import_path: github.com/igarciaolaizola/h2-stream
+go:
+- 1.11.x
+deploy:
+- provider: script
+  skip_cleanup: true
+  script: curl -sL http://git.io/goreleaser | bash
+  on:
+    tags: true
+env:
+  global:
+    secure: GpqlB/C2a+Jycfd4clxITUdBaFHs2rKj7b4jsVRgMVoVHNrn58sHjz3uiN+hd60H6bOUapcNoPi6WIMXea8wAEwWj10ImQ123dNLzE+v0ZUH7EfVupR33te/0Uhv9hrAW+LTB5xMWZUEn1HbQ7EsFHZT3WF6iJT8y9nlDcRRc3Tbb3fhiww/+x1ubasCY/cAeehOeSrLC2zuP9nBd4ho/qIHZ001jlZUZe2h6QT27Br9dbeR6RHF7sD349qhsH2b3/1v3BRZ9T/UzR8J3f8gBKhV47TMQum4oFtVuJD7x+6NgNzDytIxRv9/I3OFqLKmpj3J0LkMYzEEK4lbaKCDu5u8FDucedQEd1FQPlm4Su8RUAsII+pGU0t2VLf0Csao0u51/mN6SLjwiEn3+26SSdc4JOHG7dDLK952kCzKhsDLbuJ10+/TOLJNYopVM28QarPVl64B6+Jj85iT+yf6XgTO5qA9UeieYKlAaaCquWQXJQEKKBV7YWkqPcbYPRXhESEUgW4/tTOZC1+2ISQ0Jo3JIfuvZi4Hhijy5nyxlXXczBLZ51KRU6FqgkGPYqH8hP22vAsjTzI/yvE7t5cr2WSmbOJfNpGYS6DHOmQ2tf+Zfa1lXWiGs0yRV+lNCYylm9ajNhLfhsFjYARqn8kXc5zyov+LfXXinuK4b0qhr1o=
