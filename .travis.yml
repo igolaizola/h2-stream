@@ -1,6 +1,6 @@
 sudo: required
 language: go
-go_import_path: github.com/igarciaolaizola/h2-stream
+go_import_path: github.com/igolaizola/h2-stream
 go:
 - 1.11.x
 deploy:

@@ -1,8 +1,8 @@
 package cli
 
 import (
-	"github.com/igarciaolaizola/h2-stream/internal/client"
-	"github.com/igarciaolaizola/h2-stream/internal/server"
+	"github.com/igolaizola/h2-stream/internal/client"
+	"github.com/igolaizola/h2-stream/internal/server"
 	"github.com/spf13/cobra"
 )
 

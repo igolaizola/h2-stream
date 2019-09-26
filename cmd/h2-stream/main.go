@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"github.com/igarciaolaizola/h2-stream/internal/cli"
+	"github.com/igolaizola/h2-stream/internal/cli"
 )
 
 func main() {
